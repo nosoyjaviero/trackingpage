@@ -78,8 +78,8 @@ function API() {
 
 //esqueleto de la pagina. Aqui se une los componentes y apis y funciones
 function App() {
-const [Estado,setEstado]=useState([]);
-var id="";
+  const [Estado, setEstado] = useState([]);
+  var id = "";
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
 
@@ -89,31 +89,22 @@ var id="";
     console.log(value);
     result = allData.filter((data) => {
 
-  
+
       return data.id.search(value) != -1;
     });
     setFilteredData(result);
-    
+
 
     filteredData.find(function (array, index) {
       if (array.id == value) {
-        id=array.id;
+        id = array.id;
         setEstado(array.Estado);
-        
-        console.log(array.id);
-        console.log(value);
-        console.log(array.id == value);
-        console.log(id);
-        
-
       } else {
-       
+
       }
-    });   
+    });
 
   }
-  
-
   useEffect(() => {
     axios('http://localhost/react/')
       .then(response => {
@@ -124,6 +115,8 @@ var id="";
         console.log('Error getting fake data: ' + error);
       })
   }, []);
+
+
 
   return (
 
@@ -137,24 +130,17 @@ var id="";
 
         {Seguimiento(a)}
 
-
+        <NameForm />
 
         <div style={{ margin: '0 auto', marginTop: '10%' }}>
           <label>Search:</label>
           <input type="text" onChange={(event) => handleSearch(event)} />
         </div>
         <div style={{ padding: 10 }}>
-          {Estado}          
+          {Estado}
         </div>
 
 
-        <div>
-          aqui si busca no importa lo que sea que le envia por parametro
-          no mas de pasarle el parametro
-          Por alguna razon, en formtracking no sirven las funciones
-          entonces no se le pueden pasar ningun tipo  parametro
-          menos uno de formulario
-        </div>
 
       </body>
 

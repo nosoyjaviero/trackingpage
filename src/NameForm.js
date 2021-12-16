@@ -8,6 +8,8 @@ import axios from 'axios';
 
 function Seguimiento() {
 
+  const [Info,SetInfo] = useState([]);
+
   var baseUrl = "http://localhost/react/";
 
   const [data, setData] = useState([]);
@@ -43,9 +45,9 @@ var a ;
 
 class NameForm extends React.Component {
 
-  
 
-  constructor(props){
+
+  constructor(props){  
     super(props);
 
     this.state = {
@@ -57,12 +59,13 @@ class NameForm extends React.Component {
   }
 
   onChange = e =>{
+   
     const {name, value} = e.target;
     this.setState({
       [name]: value,
     });
   }
-  enviarAlaBD = e  => {
+  enviarAlaBD = e  => {    
     e.preventDefault();
     let valido = true;
     if(this.state.nombre === ''){
@@ -75,6 +78,7 @@ class NameForm extends React.Component {
    
     if(valido){
       a=parseInt(this.state.nombre);
+     
       console.log(a);
       
     }
@@ -104,4 +108,5 @@ class NameForm extends React.Component {
     
   }
 }
+
 export default NameForm;
