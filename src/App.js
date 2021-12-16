@@ -38,7 +38,7 @@ function Seguimiento(TRACKID) {
   if (trackState == "") {
     trackState = "No existe seguimiento"
   }
-  
+
 
   return trackState;
 }
@@ -79,34 +79,38 @@ function API() {
 //esqueleto de la pagina. Aqui se une los componentes y apis y funciones
 function App() {
 
-  const [allData,setAllData] = useState([]);
-  const [filteredData,setFilteredData] = useState(allData);
+  const [allData, setAllData] = useState([]);
+  const [filteredData, setFilteredData] = useState(allData);
 
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = [];
     console.log(value);
     result = allData.filter((data) => {
-    return data.title.search(value) != -1;
+if (1==1){  
+  
+}
+
+      return data.id.search(value) != -1;
     });
     setFilteredData(result);
-    }
+  }
 
 
-  
+
   useEffect(() => {
-    axios('https://jsonplaceholder.typicode.com/albums/1/photos')
-    .then(response => {
-    console.log(response.data)
-    setAllData(response.data);
-    setFilteredData(response.data);
-    })
-    .catch(error => {
-    console.log('Error getting fake data: ' + error);
-    })
-    }, []);
+    axios('http://localhost/react/')
+      .then(response => {
+        setAllData(response.data);
+        setFilteredData(response.data);
+      })
+      .catch(error => {
+        console.log('Error getting fake data: ' + error);
+      })
+  }, []);
 
- 
+
+
 
 
 
@@ -126,7 +130,7 @@ function App() {
 
 
 
-        <NameForm />
+     
 
 
         {Seguimiento(a)}
@@ -134,18 +138,27 @@ function App() {
 
 
         <div style={{ margin: '0 auto', marginTop: '10%' }}>
-<label>Search:</label>
-<input type="text" onChange={(event) =>handleSearch(event)} />
-</div>
-<div style={{padding:10}}>
-{filteredData.map((value,index)=>{
-return(
-<div  key={value.id}>
-{value.title}
-</div>
-)
-})}
-</div>
+          <label>Search:</label>
+          <input type="text" onChange={(event) => handleSearch(event)} />
+        </div>
+        <div style={{ padding: 10 }}>
+          {
+            filteredData.map(function (value, index) {
+              if(1==1){
+                return ( 
+               
+                <div key={value.id}>
+                  {filteredData.id}
+                 ID: {value.id}  Estado:{value.Estado}
+                </div>
+              )
+            
+              }
+              
+            }
+            )
+          }
+        </div>
 
 
 
