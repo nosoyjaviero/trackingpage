@@ -79,6 +79,7 @@ function API() {
 //esqueleto de la pagina. Aqui se une los componentes y apis y funciones
 function App() {
   const [Estado, setEstado] = useState([]);
+  
   var id = "";
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
@@ -112,7 +113,7 @@ function App() {
         setFilteredData(response.data);
       })
       .catch(error => {
-        console.log('Error getting fake data: ' + error);
+        console.log('No hay datos ' + error);
       })
   }, []);
 
@@ -133,8 +134,8 @@ function App() {
         <NameForm />
 
         <div style={{ margin: '0 auto', marginTop: '10%' }}>
-          <label>Search:</label>
-          <input type="text" onChange={(event) => handleSearch(event)} />
+          <label>Buscar:</label>
+          <input type="text" placeholder='Digite su seguimiento' onChange={(event) => handleSearch(event)} />
         </div>
         <div style={{ padding: 10 }}>
           {Estado}
