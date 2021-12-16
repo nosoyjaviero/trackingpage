@@ -129,9 +129,10 @@ function App() {
 
       <body>
 
-        {Seguimiento(a)}
+       
 
         <NameForm />
+        {Seguimiento(a)}
 
         <div style={{ margin: '0 auto', marginTop: '10%' }}>
           <label>Buscar:</label>
