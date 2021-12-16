@@ -38,6 +38,7 @@ function Seguimiento(TRACKID) {
   if (trackState == "") {
     trackState = "No existe seguimiento"
   }
+  
 
   return trackState;
 }
