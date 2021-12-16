@@ -106,17 +106,7 @@ function App() {
     })
     }, []);
 
-    const styles = {
-      display:'inline',
-      width:'30%',
-      height:50,
-      float:'left',
-      padding:5,
-      border:'0.5px solid black',
-      marginBottom:10,
-      marginRight:10
-      }
-
+ 
 
 
 
@@ -150,10 +140,8 @@ function App() {
 <div style={{padding:10}}>
 {filteredData.map((value,index)=>{
 return(
-<div key={value.id}>
-<div style={styles} key={value.id}>
+<div  key={value.id}>
 {value.title}
-</div>
 </div>
 )
 })}
