@@ -78,7 +78,8 @@ function API() {
 
 //esqueleto de la pagina. Aqui se une los componentes y apis y funciones
 function App() {
-
+const [Estado,setEstado]=useState([]);
+var id="";
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
 
@@ -87,16 +88,31 @@ function App() {
     let result = [];
     console.log(value);
     result = allData.filter((data) => {
-if (1==1){  
-  
-}
 
+  
       return data.id.search(value) != -1;
     });
     setFilteredData(result);
+    
+
+    filteredData.find(function (array, index) {
+      if (array.id == value) {
+        id=array.id;
+        setEstado(array.Estado);
+        
+        console.log(array.id);
+        console.log(value);
+        console.log(array.id == value);
+        console.log(id);
+        
+
+      } else {
+       
+      }
+    });   
+
   }
-
-
+  
 
   useEffect(() => {
     axios('http://localhost/react/')
@@ -109,14 +125,6 @@ if (1==1){
       })
   }, []);
 
-
-
-
-
-
-
-
-
   return (
 
     <div className="App">
@@ -127,12 +135,6 @@ if (1==1){
 
       <body>
 
-
-
-
-     
-
-
         {Seguimiento(a)}
 
 
@@ -142,25 +144,8 @@ if (1==1){
           <input type="text" onChange={(event) => handleSearch(event)} />
         </div>
         <div style={{ padding: 10 }}>
-          {
-            filteredData.map(function (value, index) {
-              if(1==1){
-                return ( 
-               
-                <div key={value.id}>
-                  {filteredData.id}
-                 ID: {value.id}  Estado:{value.Estado}
-                </div>
-              )
-            
-              }
-              
-            }
-            )
-          }
+          {Estado}          
         </div>
-
-
 
 
         <div>
