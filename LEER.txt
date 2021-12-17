@@ -1,0 +1,4 @@
+tracking_db.sql debe ser importado al servidor xampp/wamp
+y la carpeta react debe ser añadida dentro de C:\xampp\htdocs
+
+se debe ejecutar el servidor mysql y apache
