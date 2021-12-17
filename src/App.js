@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
@@ -50,8 +50,9 @@ function App() {
 
   //variable que pueden cambiar de estado en jsx
   const [Estado, setEstado] = useState([]);
-  
-  const [id,setID] = useState([]);
+
+  const [id, setID] = useState([]);
+  const [founded, setFounded] = useState([]);
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
 
@@ -60,24 +61,29 @@ function App() {
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = [];
-    console.log(value);
     result = allData.filter((data) => {
-
       return data.id.search(value) != -1;
     });
     setFilteredData(result);
     console.log(value)
     filteredData.find(function (array, index) {
       if (array.id == value) {
-        setID( array.id);
+        setID(array.id);
         setEstado(array.Estado);
-        
-      } else {
-
+        setFounded("");
       }
-    });
 
+      if (value == "") {
+        setID("");
+        setEstado("");
+        setFounded("");
+      }
+
+
+    });
+    
   }
+
 
   //consume el json de la base de datos
   useEffect(() => {
@@ -92,20 +98,21 @@ function App() {
   }, []);
 
 
-
+  //pintado en pantalla de html y demas componentes
   return (
 
     <div className="App"  >
       <header className="App-header">
         <h1>Bienvenido</h1>
-   
 
-        <form  className="form-register">
-          
+
+        <form className="form-register">
+
           <input type="text" placeholder='Digite su seguimiento' className='controls' onChange={(event) => handleSearch(event)} />
-        
+
           <div>ID: {id} </div>
-         <div>Estado: {Estado}</div>
+          <div>Estado: {Estado}</div>
+          <div>{founded}</div>
         </form>
 
         <div className='cambiocr'>
@@ -118,18 +125,8 @@ function App() {
           <div className='venta'>Venta: {API()[1]}</div>
         </div>
         <div>
-
-
-
-
         </div>
       </header >
-
-      <footer>
-       
-      </footer>
-  
-
     </div>
 
   );
