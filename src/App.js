@@ -1,8 +1,8 @@
 
 import './App.css';
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import NameForm from './NameForm'
+
 
 
 
@@ -66,11 +66,12 @@ function App() {
       return data.id.search(value) != -1;
     });
     setFilteredData(result);
-
+    console.log(value)
     filteredData.find(function (array, index) {
       if (array.id == value) {
         setID( array.id);
         setEstado(array.Estado);
+        
       } else {
 
       }
@@ -95,39 +96,37 @@ function App() {
   return (
 
     <div className="App"  >
-      <header className="header">
+      <header className="App-header">
         <h1>Bienvenido</h1>
-      </header >
+   
 
-      <body>
         <form  className="form-register">
           
           <input type="text" placeholder='Digite su seguimiento' className='controls' onChange={(event) => handleSearch(event)} />
-        </form>
-        <div>
-
-
-         <div>ID: {id} </div>
+        
+          <div>ID: {id} </div>
          <div>Estado: {Estado}</div>
+        </form>
 
-
-        </div>
-
-
-
-      </body>
-
-
-      <footer>
         <div className='cambiocr'>
           <div>
             <div>
-              API de tipo de cambio
+              Tipo de cambio
             </div>
             {API()[2]}</div>
           <div className='compra'>Compra: {API()[0]}</div>
           <div className='venta'>Venta: {API()[1]}</div>
         </div>
+        <div>
+
+
+
+
+        </div>
+      </header >
+
+      <footer>
+       
       </footer>
   
 
