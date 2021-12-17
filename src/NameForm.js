@@ -79,16 +79,13 @@ class NameForm extends React.Component {
     if(valido){
       a=parseInt(this.state.nombre);
      
-      console.log(a);
-      
     }
   }
   
 
   render(){
     return (
-      <div>
-        
+      <div>       
             
             <form className='form-register' onSubmit={this.enviarAlaBD}>
              

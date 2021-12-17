@@ -10,38 +10,7 @@ import NameForm from './NameForm'
 // consulta por un seguimiento en especifico
 //devuelve el estado del pedido 
 //
-function Seguimiento(TRACKID) {
 
-  var baseUrl = "http://localhost/react/";
-
-  const [data, setData] = useState([]);
-  const peticionGet = async () => {
-    await axios.get(baseUrl)
-      .then(response => {
-        setData(response.data);
-
-      })
-  }
-
-  useEffect(() => {
-    peticionGet();
-  }, [])
-
-  var trackState = "";
-
-  data.find(function (value, index) {
-    if (value.track_id == TRACKID) {
-      trackState = value.Estado;
-    } else {
-    }
-  });
-  if (trackState == "") {
-    trackState = "No existe seguimiento"
-  }
-
-
-  return trackState;
-}
 
 
 //una funcion que consumi el api de compra y venta del banco de costarica
@@ -78,27 +47,29 @@ function API() {
 
 //esqueleto de la pagina. Aqui se une los componentes y apis y funciones
 function App() {
+
+  //variable que pueden cambiar de estado en jsx
   const [Estado, setEstado] = useState([]);
   
-  var id = "";
+  const [id,setID] = useState([]);
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
 
+
+  //evento que busca la palabra dentro del array
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     let result = [];
     console.log(value);
     result = allData.filter((data) => {
 
-
       return data.id.search(value) != -1;
     });
     setFilteredData(result);
 
-
     filteredData.find(function (array, index) {
       if (array.id == value) {
-        id = array.id;
+        setID( array.id);
         setEstado(array.Estado);
       } else {
 
@@ -106,6 +77,8 @@ function App() {
     });
 
   }
+
+  //consume el json de la base de datos
   useEffect(() => {
     axios('http://localhost/react/')
       .then(response => {
@@ -121,30 +94,29 @@ function App() {
 
   return (
 
-    <div className="App">
+    <div className="App"  >
       <header className="header">
         <h1>Bienvenido</h1>
-
       </header >
 
       <body>
+        <form  className="form-register">
+          
+          <input type="text" placeholder='Digite su seguimiento' className='controls' onChange={(event) => handleSearch(event)} />
+        </form>
+        <div>
 
-       
 
-        <NameForm />
-        {Seguimiento(a)}
+         <div>ID: {id} </div>
+         <div>Estado: {Estado}</div>
 
-        <div style={{ margin: '0 auto', marginTop: '10%' }}>
-          <label>Buscar:</label>
-          <input type="text" placeholder='Digite su seguimiento' onChange={(event) => handleSearch(event)} />
-        </div>
-        <div style={{ padding: 10 }}>
-          {Estado}
+
         </div>
 
 
 
       </body>
+
 
       <footer>
         <div className='cambiocr'>
@@ -157,10 +129,11 @@ function App() {
           <div className='venta'>Venta: {API()[1]}</div>
         </div>
       </footer>
+  
 
     </div>
 
   );
 }
-var a = parseInt("4");
+
 export default App;

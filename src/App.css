@@ -1,4 +1,4 @@
-* {
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,6 +9,7 @@
 
 .App {
   text-align: center;
+  background-image: url("./images/fondo.jpg");
  
 }
 
@@ -72,11 +73,12 @@
 
 
 .header{
-
-  background-image: url("./images/bolder.png");
   background: 800px;
 }
+
 .cambiocr{
+  border-spacing: 10px;
+  border-top: 40px;
   border-image-source: url("./images/costa-rica.png");
 
 }
